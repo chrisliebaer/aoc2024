@@ -44,6 +44,14 @@ function M.transpose(lines)
 	return columns
 end
 
+function M.reverse(array)
+	local reversed = {}
+	for i = #array, 1, -1 do
+		table.insert(reversed, array[i])
+	end
+	return reversed
+end
+
 function M.arrayToString(array)
 	local str = "["
 	for i, v in ipairs(array) do
