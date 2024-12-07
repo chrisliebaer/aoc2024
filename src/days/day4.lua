@@ -1,3 +1,4 @@
+require("compat")
 local util = require("util")
 
 -- these patterns describe the possible directions in which we need to search, starting from a cell
@@ -11,7 +12,7 @@ local ACCESS_PATTERN = {
 	plan = function(self, x, y, str)
 		local plans = {}
 		for i, p in ipairs(self) do
-			local dx, dy = table.unpack(p)
+			local dx, dy = unpack(p)
 			plans[i] = {}
 			for k = 1, #str do
 				local c = str:sub(k, k)
@@ -33,12 +34,12 @@ local ACCESS_PATTERN_PART2 = {
 
 		local plans = {}
 		for i, p in ipairs(self) do
-			local dx, dy = table.unpack(p)
+			local dx, dy = unpack(p)
 
 			-- forward paths for "MAS"
 			plans[i] = {}
 			for k = 1, 3 do
-				local dx, dy = table.unpack(p[k])
+				local dx, dy = unpack(p[k])
 				local c = needle:sub(k, k)
 				plans[i][k] = {c, x + dx, y + dy}
 			end
@@ -48,7 +49,7 @@ local ACCESS_PATTERN_PART2 = {
 		for i = 1, #self do
 			local newPlan = {}
 			for j = 1, 3 do
-				newPlan[j] = {table.unpack(plans[i][j])}
+				newPlan[j] = {unpack(plans[i][j])}
 			end
 
 			-- reverse first and last character
@@ -120,7 +121,7 @@ local function countMatches(x, y, grid, plans)
 		-- if the entire plan matches, we have a match (assume it does until mismatch)
 		local planMatches = true
 		for _, step in ipairs(plan) do
-			local c, x, y = table.unpack(step)
+			local c, x, y = unpack(step)
 			local cell = grid:getCell(x, y)
 
 			if cell ~= c then
@@ -134,7 +135,7 @@ local function countMatches(x, y, grid, plans)
 
 			-- store the matching cells for debugging purposes
 			for _, step in ipairs(plan) do
-				local c, x, y = table.unpack(step)
+				local c, x, y = unpack(step)
 				matchingCells[#matchingCells + 1] = {x, y}
 			end
 		end

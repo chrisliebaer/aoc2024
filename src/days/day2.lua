@@ -1,3 +1,4 @@
+require("compat")
 local util = require("util")
 
 local function reportUpSafe(line)
@@ -14,7 +15,7 @@ end
 local function reportLinientSafe(line)
 	-- attempt to remove a single element from the line and check if it becomes safe
 	for i = 1, #line do
-		local copy = {table.unpack(line)}
+		local copy = {unpack(line)}
 		table.remove(copy, i)
 		if reportUpSafe(copy) ~= reportUpSafe(util.reverse(copy)) then
 			return true

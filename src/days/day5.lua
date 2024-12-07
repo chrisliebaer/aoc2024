@@ -1,3 +1,4 @@
+require("compat")
 local util = require("util")
 
 
@@ -85,10 +86,10 @@ local function fixJob(job, orderPairsOrig)
 	print("Fixing job " .. util.arrayToString(job))
 
 	-- we create a copy of the job and orderPairs
-	local job = {table.unpack(job)}
+	local job = {unpack(job)}
 	local orderPairs = {} -- deep copy of orderPairs
 	for k, v in pairs(orderPairsOrig) do
-		orderPairs[k] = {table.unpack(v)}
+		orderPairs[k] = {unpack(v)}
 	end
 
 	-- we rebuild the job and start with an empty job

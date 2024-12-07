@@ -1,3 +1,4 @@
+require("compat")
 local util = require("util")
 
 local OPS = {
@@ -73,6 +74,11 @@ local function solveLine(value, numbers, validOps)
 		for i, op in ipairs(ops) do
 			local nextValue = numbers[i + 1]
 			result = op[2](result, nextValue)
+
+			-- if result exceeds value, solution is impossible
+			if result > value then
+				break
+			end
 		end
 
 		if result == value then

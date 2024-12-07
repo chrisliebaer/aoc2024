@@ -1,3 +1,4 @@
+require("compat")
 local util = require("util")
 
 local PART1_MUL_PATTERN = "mul%((%d%d?%d?),(%d%d?%d?)%)"

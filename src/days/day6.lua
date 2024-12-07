@@ -1,3 +1,4 @@
+require("compat")
 local util = require("util")
 
 local GUARD_ICON = {"^", ">", "v" , "<"}

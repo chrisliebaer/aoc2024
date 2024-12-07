@@ -1,8 +1,9 @@
+require("compat")
 local util = require("util")
 
 local function part1()
 	local lines = util.loadInput(1)
-	local first, second = table.unpack(util.transpose(lines))
+	local first, second = unpack(util.transpose(lines))
 
 	-- sort both arrays
 	table.sort(first)
@@ -20,7 +21,7 @@ end
 
 local function part2()
 	local lines = util.loadInput(1)
-	local first, second = table.unpack(util.transpose(lines))
+	local first, second = unpack(util.transpose(lines))
 
 	-- count occurences of each number in second list
 	local occurences = {}
